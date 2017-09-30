@@ -1,3 +1,15 @@
+// ==UserScript==
+// @name         Giveaway Helper Enhancer
+// @namespace    https://github.com/gekkedev/giveawayHelperEnhancer
+// @version      0.1
+// @description  Enhances the popular Steam key giveaway site helper
+// @author       gekkedev
+// @match        *://*.marvelousga.com/*
+// @grant        none
+// @updateURL https://raw.githubusercontent.com/gekkedev/giveawayHelperEnhancer/master/giveawayHelperEnhancer.user.js
+// @downloadURL https://raw.githubusercontent.com/gekkedev/giveawayHelperEnhancer/master/giveawayHelperEnhancer.user.js
+// ==/UserScript==
+
 (function() {
     /**
     * Determine what to do for this page based on what's defined in the "config" variable
