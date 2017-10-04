@@ -8,20 +8,21 @@ This script enhances the popular [Steam key giveaway site helper](https://github
   <thead>
     <tr>
       <td rowspan="2" width="444px" valign="bottom"><strong>Site</strong></td>
-      <td colspan="2" width="443px" align="center"><strong>Advertisement removal</strong></td>
-      <td colspan="1" width="443px" align="center"><strong>Giveaway help</strong></td>
+      <td colspan="3" width="443px" align="center"><strong>Features</strong></td>
     </tr>
     <tr>
-      <td align="center"><strong>Banner removal</strong></td>
-      <td align="center"><strong>Popup removal</strong></td>
+      <td align="center"><strong>Banner/Popup removal</strong></td>
+      <td align="center"><strong>Auto-login</strong></td>
       <td align="center"><strong>Automatic task solving</strong></td>
     </tr>
   </thead>
   <tbody>
-  <tr><td>Marvelousga</td><td align="center">✔</td><td align="center">planned</td><td align="center">planned</td></tr>
+    <tr><td>DupedOrNot</td><td align="center">✔</td><td align="center">✔</td><td align="center">planned</td></tr>
+    <tr><td>Indiegala</td><td align="center">✔</td><td align="center">planned</td><td align="center">partly done</td></tr>
+    <tr><td>Marvelousga</td><td align="center">✔</td><td align="center">✔</td><td align="center">planned</td></tr>
+    <tr><td>Steam OpenID Onsite-login</td><td align="center">-</td><td align="center">✔</td><td align="center">-</td></tr>
     <!--
     <tr><td>ChubbyKeys</td><td align="center">✔</td><td></td><td></td></tr>
-    <tr><td>DupedOrNot</td><td align="center">✔</td><td></td><td align="center">✔</td></tr>
     <tr><td>Embloo</td><td align="center">✔</td><td></td><td></td></tr>
     <tr><td>GetKeys</td><td align="center">✔</td><td></td><td align="center">✔</td></tr>
     <tr><td>Ghame.ru</td><td align="center">✔</td><td></td><td></td></tr>
@@ -29,9 +30,7 @@ This script enhances the popular [Steam key giveaway site helper](https://github
     <tr><td>Giveawayhopper</td><td align="center">✔</td><td></td><td></td></tr>
     <tr><td>Gleam.io (<a href="https://raw.githubusercontent.com/Citrinate/giveawayHelper/master/images/gleam.png">preview</a>)</td><td align="center">✔</td><td align="center">✔</td><td align="center">✔</td></tr>
     <tr><td>HRK</td><td align="center">✔</td><td></td><td></td></tr>
-    <tr><td>Indiegala</td><td align="center">✔</td><td></td><td></td></tr>
     <tr><td>Key Champions</td><td align="center">✔</td><td></td><td></td></tr>
-    <tr><td>Marvelousga</td><td align="center">✔</td><td></td><td align="center">✔</td></tr>
     <tr><td>Prys.ga</td><td align="center">✔</td><td></td><td></td></tr>
     <tr><td>Simplo.gg</td><td align="center">✔</td><td></td><td></td></tr>
     <tr><td>Steam Friends</td><td align="center">✔</td><td></td><td></td></tr>
