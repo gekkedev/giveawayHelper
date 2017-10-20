@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Giveaway Helper Enhancer
 // @namespace    https://github.com/gekkedev/giveawayHelperEnhancer
-// @version      0.3
+// @version      0.3.1
 // @description  Enhances the popular Steam key giveaway site helper
 // @author       gekkedev
 // @match        *://*.marvelousga.com/*
@@ -23,6 +23,7 @@
 // ==/UserScript==
 
 (function() {
+    jQuery.noConflict(); //to prevent i.e. broken buttons when a site uses jquery too
     /**
     * Determine what to do for this page based on what's defined in the "config" variable
     *
@@ -74,7 +75,7 @@
             hostname: "indiegala.com",
             ads: true,
             clickables: ["button#close-socials"],
-            custom: function() {jQuery.noConflict();$('#myModal-givform').modal('show');}
+            custom: function() {$('#myModal-givform').modal('show');}
         },
         {
             hostname: "giveaway.su",
