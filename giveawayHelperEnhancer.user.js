@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Giveaway Helper Enhancer
 // @namespace    https://github.com/gekkedev/giveawayHelperEnhancer
-// @version      0.3.1
+// @version      0.4
 // @description  Enhances the popular Steam key giveaway site helper
 // @author       gekkedev
 // @match        *://*.marvelousga.com/*
@@ -14,6 +14,7 @@
 // @match        *://*.giveawayhopper.com/*
 // @match        *://*.giftybundle.com/*
 // @match        *://*.cubicbundle.com/*
+// @match        *://*.treasuregiveaways.com/*
 // @match        *://*.steamcommunity.com/openid/login*
 // @grant        none
 // @updateURL https://raw.githubusercontent.com/gekkedev/giveawayHelperEnhancer/master/giveawayHelperEnhancer.user.js
@@ -113,14 +114,19 @@
             autologin: "a.no-login"
         },
         {
+            hostname: "treasuregiveaways.com",
+            clickables: ["input[onclick*=incr]"],
+            custom: function() {jQuery('form[action="?login"]').submit();}
+        },
+        {
             hostname: "steamcommunity.com",
             ads: false,
             clickables: ["input[type='submit']"]
         }
     ];
     scanForElement = function(ident) {
-        console.log("found " + ident + " " + $(ident).length + " time(s)");console.log($(ident));
-        if ($(ident).length >= 1) {
+        console.log("found " + ident + " " + jQuery(ident).length + " time(s)");console.log($(ident));
+        if (jQuery(ident).length >= 1) {
             return true;
         } else {
             console.log('cannot find ' + ident);
@@ -139,7 +145,7 @@
     };
     var clickElement = function(ident) {
         if (scanForElement(ident)) {
-            $(ident).click();
+            jQuery(ident).click();
         }
     };
     var visitLink = (function(ident){
@@ -171,7 +177,7 @@
             if (site.clickables !== undefined) {
                 if (site.clickables.length > 0) {
                     for(var j = 0; j < site.clickables.length; j++) {
-                        if ($.isArray(site.clickables[j])) {
+                        if (jQuery.isArray(site.clickables[j])) {
                             j = getRandomInt(0, site.clickables[j].length);
                             console.log("picking the entry " + j);
                         }
