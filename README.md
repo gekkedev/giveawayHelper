@@ -27,6 +27,7 @@ This script enhances the popular [Steam key giveaway site helper](https://github
     <tr><td>Giveaway.su</td><td align="center">-</td><td align="center">✔</td><td align="center">-</td></tr>
     <tr><td>Simplo.gg</td><td align="center">✔</td><td align="center">✔</td><td align="center">partly done</td></tr>
     <tr><td>Cubicbundle.com</td><td align="center">-</td><td align="center">✔</td><td align="center">-</td></tr>
+    <tr><td>TreasureGiveaways</td><td align="center">-</td><td align="center">✔</td><td align="center">✔</td></tr>
     <!--
     <tr><td>ChubbyKeys</td><td align="center">✔</td><td></td><td></td></tr>
     <tr><td>Embloo</td><td align="center">✔</td><td></td><td></td></tr>
@@ -37,7 +38,6 @@ This script enhances the popular [Steam key giveaway site helper](https://github
     <tr><td>Key Champions</td><td align="center">✔</td><td></td><td></td></tr>
     <tr><td>Prys.ga</td><td align="center">✔</td><td></td><td></td></tr>
     <tr><td>Steam Friends</td><td align="center">✔</td><td></td><td></td></tr>
-    <tr><td>Treasure Giveaways</td><td align="center">✔</td><td></td><td></td></tr>
     <tr><td>Who's Gaming Now?!</td><td align="center">✔</td><td></td><td></td></tr>
     -->
   </tbody>
