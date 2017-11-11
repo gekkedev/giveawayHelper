@@ -20,13 +20,14 @@ This script enhances the popular [Steam key giveaway site helper](https://github
     <tr><td>Steam OpenID Onsite-login</td><td align="center">-</td><td align="center">✔</td><td align="center">-</td></tr>
     <tr><td>DogeBundle</td><td align="center">-</td><td align="center">✔</td><td align="center">-</td></tr>
     <tr><td>DupedOrNot</td><td align="center">✔</td><td align="center">✔</td><td align="center">planned</td></tr>
+    <tr><td>SteamGifts</td><td align="center">✔</td><td align="center">✔</td><td align="center">-</td></tr>
     <tr><td>Indiegala</td><td align="center">✔</td><td align="center">-</td><td align="center">✔</td></tr>
     <tr><td>Marvelousga</td><td align="center">✔</td><td align="center">✔</td><td align="center">partly done</td></tr>
     <tr><td>GiftyBundle</td><td align="center">-</td><td align="center">✔</td><td align="center">planned</td></tr>
     <tr><td>GiveawayHopper</td><td align="center">✔</td><td align="center">✔</td><td align="center">planned</td></tr>
     <tr><td>Giveaway.su</td><td align="center">-</td><td align="center">✔</td><td align="center">-</td></tr>
     <tr><td>Simplo.gg</td><td align="center">✔</td><td align="center">✔</td><td align="center">partly done</td></tr>
-    <tr><td>Cubicbundle.com</td><td align="center">-</td><td align="center">✔</td><td align="center">-</td></tr>
+    <tr><td>Cubicbundle</td><td align="center">-</td><td align="center">✔</td><td align="center">-</td></tr>
     <tr><td>TreasureGiveaways</td><td align="center">-</td><td align="center">✔</td><td align="center">✔</td></tr>
     <!--
     <tr><td>ChubbyKeys</td><td align="center">✔</td><td></td><td></td></tr>
