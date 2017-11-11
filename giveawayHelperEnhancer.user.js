@@ -91,7 +91,7 @@
         },
         {
             hostname: "steamgifts.com",
-            ads: false, //not removing ads due to not being excessively sponsored
+            ads: true,
             autologin: "a.nav__sits"
         },
         {
