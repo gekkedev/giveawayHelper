@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Giveaway Helper Enhancer
 // @namespace    https://github.com/gekkedev/giveawayHelperEnhancer
-// @version      0.4.1
+// @version      0.4.2
 // @description  Enhances the popular Steam key giveaway site helper
 // @author       gekkedev
 // @match        *://*.marvelousga.com/*
@@ -12,7 +12,6 @@
 // @match        *://*.steamgifts.com/*
 // @match        *://*.simplo.gg/*
 // @match        *://*.giveawayhopper.com/*
-// @match        *://*.giftybundle.com/*
 // @match        *://*.cubicbundle.com/*
 // @match        *://*.treasuregiveaways.com/*
 // @match        *://*.steamcommunity.com/openid/login*
@@ -59,7 +58,7 @@
             autologin: "a[href='?login']",
             //clickables: ["button[type=submit][name!=sg][id!=submit]"],
             //autosolve: "'div.collapse* button'"
-            trigger: [removePopups, fakeClickLinks, solveGamehagUsernameCheck]
+            trigger: [removePopups, solveGamehagUsernameCheck] //fakeClickLinks
         },
         {
             hostname: "dupedornot.com",
@@ -80,7 +79,7 @@
         },
         {
             hostname: "giveaway.su",
-            ads: false,
+            ads: true,
             autologin: "a.steam-login"
         },
         {
@@ -100,11 +99,6 @@
         },
         {
             hostname: "giveawayhopper.com",
-            ads: false,
-            autologin: "a[href='?login']"
-        },
-        {
-            hostname: "giftybundle.com",
             ads: false,
             autologin: "a[href='?login']"
         },
