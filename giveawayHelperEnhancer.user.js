@@ -132,7 +132,7 @@
                     }
                 });
                 $(button).attr("href", $(button).attr("href")+"&actions="+md5(actions)).removeClass("disabled");
-                $("#getKey").prepend("Giveaway Killer by gekkedev has skipped some tasks for you, because this site is trying to maniupilate the Steam store and to get access over your private data. Key claiming does usually work when you have joined all the required groups. Please use the Giveaway Helper by Citrinate in order to join groups easier. Linking accounts happens at your own risk and is a possible reason of unwanted actions commited via your account (account theft, unwanted purchases, etc.) and is qualifying you for punishments regarding Steam T.O.S. violations.<br>");
+                $("#getKey").prepend("Giveaway Killer by gekkedev has skipped some tasks for you, because this site is trying to manipulate the Steam store and to get access over your private data. Key claiming does usually work when you have joined all the required groups. Please use the Giveaway Helper by Citrinate in order to join groups easier. Linking accounts happens at your own risk and is a possible reason of unwanted actions commited via your account (account theft, unwanted purchases, etc.) and is qualifying you for punishments regarding Steam T.O.S. violations.<br>");
             });
         }
     };
