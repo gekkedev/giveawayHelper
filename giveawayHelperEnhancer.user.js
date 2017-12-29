@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         Giveaway Helper Enhancer
+// @name         Giveaway Killer (a.k.a. Giveaway Enhancer)
 // @namespace    https://github.com/gekkedev/giveawayHelperEnhancer
-// @version      0.4.2
-// @description  Enhances the popular Steam key giveaway site helper
+// @version      0.5
+// @description  Enhances Steam key giveaways sites by lots of useful features
 // @author       gekkedev
 // @match        *://*.marvelousga.com/*
 // @match        *://*.dupedornot.com/*
@@ -19,6 +19,7 @@
 // @updateURL https://raw.githubusercontent.com/gekkedev/giveawayHelperEnhancer/master/giveawayHelperEnhancer.user.js
 // @downloadURL https://raw.githubusercontent.com/gekkedev/giveawayHelperEnhancer/master/giveawayHelperEnhancer.user.js
 // @require https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js
+// @require https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.10.0/js/md5.min.js
 // @run-at document-end
 // ==/UserScript==
 
@@ -42,7 +43,7 @@
     *
     */
     var removePopups = (function(){
-        console.log("removing popups!");
+        //console.log("removing popups!");
         removeElement("a[id^='popup']");
     });
     var fakeClickLinks = function() {
@@ -51,6 +52,93 @@
     var solveGamehagUsernameCheck = function() {
         //"Kruemel" //some random user, just pick another one from the ranklist in case they block this user ;-)
     };
+    scanForElement = function(ident) {
+        //console.log("found " + ident + " " + jQuery(ident).length + " time(s)");console.log($(ident));
+        if (jQuery(ident).length >= 1) {
+            return true;
+        } else {
+            //console.log('cannot find ' + ident);
+            return false;
+        }
+    };
+    hideElement = function(ident) {
+        if (scanForElement(ident)) {
+            $(ident).hide();
+        }
+    };
+    removeElement = function(ident) {
+        if (scanForElement(ident)) {
+            $(ident).remove();
+        }
+    };
+    var clickElement = function(ident) {
+        if (scanForElement(ident)) {
+            jQuery(ident).click();
+        }
+    };
+    var visitLink = (function(ident){
+        window.location.replace($(ident).attr("href"));
+    });
+    var removeGoogleAds = (function(){
+        //console.log("removing google ads!");
+        hideElement("ins[class*='adsbygoogle']");
+    });
+    var getRandomInt = function(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    };
+
+    /*var autoJoinGroups = function() {
+        //giveaway.su
+        var groups = $("button[data-type='steam.group']");
+        for (var i = 0; i < groups.length; i++) {
+            var group = groups[i];
+            $.get("https://steamcommunity.com/profiles/"+$("aside[data-steam-id]").data("steam-id")+"/groups/").always(function(jqXHR) {
+                var regexp = new RegExp("href=\"javascript:leaveGroupPrompt\\('"+$(group).data("check")+"',", "g");
+                if (jqXHR && regexp.test(jqXHR))
+                    toggleActionButton(button);
+                else
+                    $(button).prop("disabled", false).find(".glyphicon.spin").removeClass("spin");
+            });
+            group.remove();
+        }
+    };*/
+    var taskSkipper_1 = function() {
+        if ($("article .extension").length) {
+            $("article .extension").addClass("installed");
+            var timestamp = $("article .extension").data("timestamp");
+            var csrf = $("article .extension").data("csrf");
+            var extension = md5(timestamp+""+csrf);
+            var secret = $("article .extension").data("secret");
+            $.get(window.location.pathname+"?extension="+extension+"&timestamp="+timestamp+"&csrf="+csrf+(secret ? "&secret="+secret : ""), function(response) {
+                $("article").replaceWith(response);
+                //this is the extension version and should not depend on manual updates
+                $("article").attr("extension-version", "chrome-3.4.9");//+chrome.runtime.getManifest().version);
+
+
+                var button = $("#getKey a");
+                var actions = 0;
+                $("#actions [data-action-id]").each(function(i,el){
+                    actions += parseInt($(el).data("action-id"));
+                    if ($(el).find("button[data-type='steam.curator']").length) {
+                        $(el).fadeOut();
+                    } else if ($(el).find("button[data-type='youtube.subscribe']").length) {
+                        $(el).fadeOut();
+                    } else if ($(el).find("button[data-type='twitter.follow']").length) {
+                        $(el).fadeOut();
+                    } else if ($(el).find("button[data-type='steam.game.wishlist']").length) {
+                        $(el).fadeOut();
+                    } else if ($(el).find("td:contains('Invite')").length) {
+                        $(el).fadeOut();
+                    }
+                });
+                $(button).attr("href", $(button).attr("href")+"&actions="+md5(actions)).removeClass("disabled");
+                $("#getKey").prepend("Giveaway Killer by gekkedev has skipped some tasks for you, because this site is trying to maniupilate the Steam store and to get access over your private data. Key claiming does usually work when you have joined all the required groups. Please use the Giveaway Helper by Citrinate in order to join groups easier. Linking accounts happens at your own risk and is a possible reason of unwanted actions commited via your account (account theft, unwanted purchases, etc.) and is qualifying you for punishments regarding Steam T.O.S. violations.<br>");
+            });
+        }
+    };
+
+    //configuration
+
     var config = [
         {
             hostname: "marvelousga.com",
@@ -80,7 +168,9 @@
         {
             hostname: "giveaway.su",
             ads: true,
-            autologin: "a.steam-login"
+            autologin: "a.steam-login",
+            trigger: [taskSkipper_1],
+            custom: function() {hideElement("ul.menu");}
         },
         {
             hostname: "simplo.gg",
@@ -118,41 +208,8 @@
             clickables: ["input[type='submit']"]
         }
     ];
-    scanForElement = function(ident) {
-        console.log("found " + ident + " " + jQuery(ident).length + " time(s)");console.log($(ident));
-        if (jQuery(ident).length >= 1) {
-            return true;
-        } else {
-            console.log('cannot find ' + ident);
-            return false;
-        }
-    };
-    hideElement = function(ident) {
-        if (scanForElement(ident)) {
-            $(ident).hide();
-        }
-    };
-    removeElement = function(ident) {
-        if (scanForElement(ident)) {
-            $(ident).remove();
-        }
-    };
-    var clickElement = function(ident) {
-        if (scanForElement(ident)) {
-            jQuery(ident).click();
-        }
-    };
-    var visitLink = (function(ident){
-        window.location.replace($(ident).attr("href"));
-    });
-    var removeGoogleAds = (function(){
-        console.log("removing google ads!");
-        hideElement("ins[class*='adsbygoogle']");
-    });
-    var getRandomInt = function(min, max) {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-    };
 
+    //execution
     for(var i = 0; i < config.length; i++) {
         var site = config[i];
 
