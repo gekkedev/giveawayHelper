@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Giveaway Killer (a.k.a. Giveaway Enhancer)
 // @namespace    https://github.com/gekkedev/giveawayHelperEnhancer
-// @version      0.5.1
+// @version      0.5.2
 // @description  Enhances Steam key giveaways sites by lots of useful features
 // @author       gekkedev
 // @match        *://*.marvelousga.com/*
@@ -14,6 +14,7 @@
 // @match        *://*.giveawayhopper.com/*
 // @match        *://*.cubicbundle.com/*
 // @match        *://*.treasuregiveaways.com/*
+// @match        *://*.goldengiveaways.org/*
 // @match        *://*.steamcommunity.com/openid/login*
 // @match        *://*.steamcommunity.com/oauth/login*
 // @grant        none
@@ -137,6 +138,17 @@
             });
         }
     };
+    var taskSkipper_2 = function() {
+        var tasks = $("a[onclick*='task()']");
+        if (tasks.length) {
+            tasks.each(function(counter, element){
+                $.get(element.href);
+            });
+            location.reload();
+        } else {
+            $(".giveaway-new").last().prepend("<div class='alert alert-danger'>Giveaway Killer by gekkedev skips the tasks for you, because this site is trying to manipulate the Steam store by asking you to follow specific curators. Doing such would qualify you for punishments regarding Steam T.O.S. violations.</div><br>");
+        }
+    };
 
     //configuration
 
@@ -202,6 +214,12 @@
             hostname: "treasuregiveaways.com",
             clickables: ["input[onclick*=incr]"],
             custom: function() {jQuery('form[action="?login"]').submit();}
+        },
+        {
+            hostname: "goldengiveaways.org",
+            ads: false,
+            autologin: "a[href='/?login']",
+            trigger: [taskSkipper_2]
         },
         {
             hostname: "steamcommunity.com",
