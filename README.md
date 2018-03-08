@@ -1,5 +1,5 @@
-# Giveaway Helper Enhancer
-This script enhances the popular [Steam key giveaway site helper](https://github.com/Citrinate/giveawayHelper) by automatic task solving, when solving is not required at all. It also supports by removing banners/popups if a giveaway site excessively uses them. Therefore it does not interfere with the Giveaway Helper and is meant to fuction as a Plug-in. Using both of them is higly recommended.
+# Giveaway Killer (a.k.a. Giveaway Enhancer)
+This script enhances the popular [Steam key giveaway site helper](https://github.com/Citrinate/giveawayHelper) by automatically logging in or solving tasks. It also removes banners/popups if a giveaway site excessively uses them. Therefore it does not interfere with the Giveaway Helper. Using both of them is higly recommended.
 
 **Disclaimer: Any usage of this script may violate the Terms of Service of the sites it runs on. It is absolutely meant to do that. Use at your own risk.**
 
@@ -29,6 +29,7 @@ This script enhances the popular [Steam key giveaway site helper](https://github
     <tr><td>Simplo.gg</td><td align="center">✔</td><td align="center">✔</td><td align="center">partly done</td></tr>
     <tr><td>Cubicbundle</td><td align="center">-</td><td align="center">✔</td><td align="center">-</td></tr>
     <tr><td>TreasureGiveaways</td><td align="center">-</td><td align="center">✔</td><td align="center">✔</td></tr>
+    <tr><td>GoldenGiveaways</td><td align="center">-</td><td align="center">✔</td><td align="center">✔</td></tr>
     <!--
     <tr><td>ChubbyKeys</td><td align="center">✔</td><td></td><td></td></tr>
     <tr><td>Embloo</td><td align="center">✔</td><td></td><td></td></tr>
