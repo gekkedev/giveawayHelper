@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Giveaway Killer (a.k.a. Giveaway Enhancer)
 // @namespace    https://github.com/gekkedev/giveawayHelperEnhancer
-// @version      0.5.2
+// @version      0.5.3
 // @description  Enhances Steam key giveaways sites by lots of useful features
 // @author       gekkedev
 // @match        *://*.marvelousga.com/*
@@ -15,6 +15,7 @@
 // @match        *://*.cubicbundle.com/*
 // @match        *://*.treasuregiveaways.com/*
 // @match        *://*.goldengiveaways.org/*
+// @match        *://*.bananagiveaway.com/*
 // @match        *://*.steamcommunity.com/openid/login*
 // @match        *://*.steamcommunity.com/oauth/login*
 // @grant        none
@@ -220,6 +221,11 @@
             ads: false,
             autologin: "a[href='/?login']",
             trigger: [taskSkipper_2]
+        },
+        {
+            hostname: "bananagiveaway.com",
+            ads: true,
+            autologin: "a[href*='/steam/']"
         },
         {
             hostname: "steamcommunity.com",
