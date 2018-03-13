@@ -30,6 +30,7 @@ This script enhances the popular [Steam key giveaway site helper](https://github
     <tr><td>Cubicbundle</td><td align="center">-</td><td align="center">✔</td><td align="center">-</td></tr>
     <tr><td>TreasureGiveaways</td><td align="center">-</td><td align="center">✔</td><td align="center">✔</td></tr>
     <tr><td>GoldenGiveaways</td><td align="center">-</td><td align="center">✔</td><td align="center">✔</td></tr>
+    <tr><td>Bananagiveaway</td><td align="center">✔</td><td align="center">✔</td><td align="center">partly possible</td></tr>
     <!--
     <tr><td>ChubbyKeys</td><td align="center">✔</td><td></td><td></td></tr>
     <tr><td>Embloo</td><td align="center">✔</td><td></td><td></td></tr>
