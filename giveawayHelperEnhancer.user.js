@@ -1,24 +1,24 @@
 // ==UserScript==
 // @name         Giveaway Killer (a.k.a. Giveaway Enhancer)
 // @namespace    https://github.com/gekkedev/giveawayHelperEnhancer
-// @version      0.5.3
+// @version      0.6
 // @description  Enhances Steam key giveaways sites by lots of useful features
 // @author       gekkedev
-// @match        *://*.marvelousga.com/*
-// @match        *://*.dupedornot.com/*
-// @match        *://*.indiegala.com/*
-// @match        *://*.dogebundle.com/*
-// @match        *://*.giveaway.su/*
-// @match        *://*.steamgifts.com/*
-// @match        *://*.simplo.gg/*
-// @match        *://*.giveawayhopper.com/*
-// @match        *://*.cubicbundle.com/*
-// @match        *://*.treasuregiveaways.com/*
-// @match        *://*.goldengiveaways.org/*
-// @match        *://*.bananagiveaway.com/*
-// @match        *://*.gamehag.com/*
-// @match        *://*.steamcommunity.com/openid/login*
-// @match        *://*.steamcommunity.com/oauth/login*
+// @match        https?://*.marvelousga.com/*
+// @match        https?://*.dupedornot.com/*
+// @match        https?://*.indiegala.com/*
+// @match        https?://*.dogebundle.com/*
+// @match        https?://*.giveaway.su/*
+// @match        https?://*.steamgifts.com/*
+// @match        https?://*.simplo.gg/*
+// @match        https?://*.giveawayhopper.com/*
+// @match        https?://*.cubicbundle.com/*
+// @match        https?://*.treasuregiveaways.com/*
+// @match        https?://*.goldengiveaways.org/*
+// @match        https?://*.bananagiveaway.com/*
+// @match        https?://*.gamehag.com/*
+// @match        https?://*.steamcommunity.com/openid/login*
+// @match        https?://*.steamcommunity.com/oauth/login*
 // @grant        none
 // @updateURL https://raw.githubusercontent.com/gekkedev/giveawayHelperEnhancer/master/giveawayHelperEnhancer.user.js
 // @downloadURL https://raw.githubusercontent.com/gekkedev/giveawayHelperEnhancer/master/giveawayHelperEnhancer.user.js
