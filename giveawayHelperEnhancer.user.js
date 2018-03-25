@@ -16,6 +16,7 @@
 // @match        *://*.treasuregiveaways.com/*
 // @match        *://*.goldengiveaways.org/*
 // @match        *://*.bananagiveaway.com/*
+// @match        *://*.gamehag.com/*
 // @match        *://*.steamcommunity.com/openid/login*
 // @match        *://*.steamcommunity.com/oauth/login*
 // @grant        none
@@ -27,7 +28,7 @@
 // ==/UserScript==
 
 (function() {
-    jQuery.noConflict(); //to prevent i.e. broken buttons when a site uses jquery too
+    J = jQuery.noConflict(true); //to prevent i.e. broken buttons when a site uses jquery too
     /**
     * Determine what to do for this page based on what's defined in the "config" variable
     *
@@ -50,14 +51,14 @@
         removeElement("a[id^='popup']");
     });
     var fakeClickLinks = function() {
-        $("form[action*='verify_click.php']").trigger("submit");
+        J("form[action*='verify_click.php']").trigger("submit");
     };
     var solveGamehagUsernameCheck = function() {
         //"Kruemel" //some random user, just pick another one from the ranklist in case they block this user ;-)
     };
     scanForElement = function(ident) {
-        //console.log("found " + ident + " " + jQuery(ident).length + " time(s)");console.log($(ident));
-        if (jQuery(ident).length >= 1) {
+        //console.log("found " + ident + " " + jQuery(ident).length + " time(s)");console.log(jQuery(ident));
+        if (J(ident).length >= 1) {
             return true;
         } else {
             //console.log('cannot find ' + ident);
@@ -66,26 +67,32 @@
     };
     hideElement = function(ident) {
         if (scanForElement(ident)) {
-            $(ident).hide();
+            J(ident).hide();
         }
     };
     removeElement = function(ident) {
         if (scanForElement(ident)) {
-            $(ident).remove();
+            J(ident).remove();
         }
     };
     var clickElement = function(ident) {
         if (scanForElement(ident)) {
-            jQuery(ident).click();
+            J(ident).click();
         }
     };
     var visitLink = (function(ident){
-        window.location.replace($(ident).attr("href"));
+        window.location.replace(J(ident).attr("href"));
     });
     var removeGoogleAds = (function(){
         //console.log("removing google ads!");
-        hideElement("ins[class*='adsbygoogle']");
+        removeElement("ins[class*='adsbygoogle']");
+        setTimeout(removeGoogleAds, 1000);
     });
+  	var getEncapsedString = function(input, delimiter) {//just gets the first occurrence
+        var startpos = input.indexOf(delimiter) + delimiter.length;
+        var endpos = input.indexOf(delimiter, startpos);
+        return input.substring(startpos, endpos)
+    }
     var getRandomInt = function(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     };
@@ -105,7 +112,7 @@
             group.remove();
         }
     };*/
-    var taskSkipper_1 = function() {
+    var taskSkipper_1 = function() {//giveaway.su/varlick
         if ($("article .extension").length) {
             $("article .extension").addClass("installed");
             var timestamp = $("article .extension").data("timestamp");
@@ -139,15 +146,50 @@
             });
         }
     };
-    var taskSkipper_2 = function() {
-        var tasks = $("a[onclick*='task()']");
+    var taskSkipper_2 = function() {//goldengiveaways
+        var tasks = J("a[onclick*='task()']");
         if (tasks.length) {
             tasks.each(function(counter, element){
-                $.get(element.href);
+                J.get(element.href);
             });
             location.reload();
         } else {
-            $(".giveaway-new").last().prepend("<div class='alert alert-danger'>Giveaway Killer by gekkedev skips the tasks for you, because this site is trying to manipulate the Steam store by asking you to follow specific curators. Doing such would qualify you for punishments regarding Steam T.O.S. violations.</div><br>");
+            J(".giveaway-new").last().prepend("<div class='alert alert-danger'>Giveaway Killer by gekkedev has skipped some tasks for you, because this site is trying to manipulate the Steam store by asking you to follow specific curators. Doing such would qualify you for punishments regarding Steam T.O.S. violations.</div><br>");
+        }
+    };
+    var taskSkipper_3 = function() {//bananagiveaway/bananatic
+        //get only facebook and youtube; steam group, twitter, and point collection tasks might be different
+        var tasks = J("li:contains('FB'):contains('Like'), li:contains('Share'):not(li:contains('Twitter'))");
+        tasks = tasks.add(J("li:contains('YT'):contains('Check')"));
+        //tasks = tasks.add(J("li:contains('Share'):contains('Twitter')"));
+
+      	//dig deeper, but keep the task steps together
+        tasks = tasks.find("div[class='buttons']");
+        var successes = 0;
+        J.ajaxSetup({async:false}); //not so smooth looking but easy
+        if (tasks.length) {console.log(tasks);
+            tasks.each(function(counter, task){
+                J.get( //hit the first link...
+                    getEncapsedString(J(J(task).find("button:not([disabled])")).attr("onclick"), "'"),
+                    function() {//...and only continue with the second link on success...
+                        //which will, on success, make sure we really solved the task
+                        J.get(
+                            getEncapsedString(J(J(task).find("button[disabled]")).attr("onclick"), "'"),
+                            function(){
+                                successes++;
+                            }
+                        );
+                    }
+                );
+            });
+            J.ajaxSetup({async:true});
+            if (tasks.length == successes) {
+                location.reload();
+            } else {
+                console.log("Could not solve all solveable tasks!");
+            }
+        } else {
+            J("div[class='bottom'] span[class='status']").prepend("<div class='alert alert-danger'>Giveaway Killer by gekkedev has skipped some tasks for you, because this site is exploiting it's users by excessive ad banner usage plus making users fullfill specific tasks which generate a dozen times more revenue than what is offered to the user.</div><br>");
         }
     };
 
@@ -177,7 +219,7 @@
             hostname: "indiegala.com",
             ads: true,
             clickables: ["button#close-socials"],
-            custom: function() {$('#myModal-givform').modal('show');}
+            custom: function() {J('#myModal-givform').modal('show');}
         },
         {
             hostname: "giveaway.su",
@@ -214,7 +256,7 @@
         {
             hostname: "treasuregiveaways.com",
             clickables: ["input[onclick*=incr]"],
-            custom: function() {jQuery('form[action="?login"]').submit();}
+            custom: function() {J('form[action="?login"]').submit();}
         },
         {
             hostname: "goldengiveaways.org",
@@ -225,7 +267,12 @@
         {
             hostname: "bananagiveaway.com",
             ads: true,
-            autologin: "a[href*='/steam/']"
+            autologin: "a[href*='/steam/']",
+            trigger: [taskSkipper_3]
+        },
+        {
+            hostname: "gamehag.com",
+            ads: true
         },
         {
             hostname: "steamcommunity.com",
@@ -253,7 +300,7 @@
             if (site.clickables !== undefined) {
                 if (site.clickables.length > 0) {
                     for(var j = 0; j < site.clickables.length; j++) {
-                        if (jQuery.isArray(site.clickables[j])) {
+                        if (J.isArray(site.clickables[j])) {
                             j = getRandomInt(0, site.clickables[j].length);
                             console.log("picking the entry " + j);
                         }
