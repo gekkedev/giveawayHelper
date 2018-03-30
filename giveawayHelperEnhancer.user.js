@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Giveaway Killer (a.k.a. Giveaway Enhancer)
 // @namespace    https://github.com/gekkedev/giveawayHelperEnhancer
-// @version      0.5.3
+// @version      0.6.1
 // @description  Enhances Steam key giveaways sites by lots of useful features
 // @author       gekkedev
 // @match        *://*.marvelousga.com/*
