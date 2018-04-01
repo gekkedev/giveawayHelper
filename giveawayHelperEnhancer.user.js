@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Giveaway Killer (a.k.a. Giveaway Enhancer)
 // @namespace    https://github.com/gekkedev/giveawayHelperEnhancer
-// @version      0.6.1
+// @version      0.6.2
 // @description  Enhances Steam key giveaways sites by lots of useful features
 // @author       gekkedev
 // @match        *://*.marvelousga.com/*
@@ -20,10 +20,10 @@
 // @match        *://*.steamcommunity.com/openid/login*
 // @match        *://*.steamcommunity.com/oauth/login*
 // @grant        none
-// @updateURL https://raw.githubusercontent.com/gekkedev/giveawayHelperEnhancer/master/giveawayHelperEnhancer.user.js
-// @downloadURL https://raw.githubusercontent.com/gekkedev/giveawayHelperEnhancer/master/giveawayHelperEnhancer.user.js
-// @require https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js
-// @require https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.10.0/js/md5.min.js
+// @updateURL    https://raw.githubusercontent.com/gekkedev/giveawayHelperEnhancer/master/giveawayHelperEnhancer.user.js
+// @downloadURL  https://raw.githubusercontent.com/gekkedev/giveawayHelperEnhancer/master/giveawayHelperEnhancer.user.js
+// @require      https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js
+// @require      https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.10.0/js/md5.min.js
 // @run-at document-end
 // ==/UserScript==
 
@@ -158,10 +158,16 @@
         }
     };
     var taskSkipper_3 = function() {//bananagiveaway/bananatic
-        //get only facebook and youtube; steam group, twitter, and point collection tasks might be different
-        var tasks = J("li:contains('FB'):contains('Like'), li:contains('Share'):not(li:contains('Twitter'))");
-        tasks = tasks.add(J("li:contains('YT'):contains('Check')"));
+        //we can autosolve only link visiting (including facebook and youtube); 
+        var tasks = J("li:has(span.icon:has(i.banicon.banicon-logo-small))");
+        tasks = tasks.add(J("li:contains('FB'):contains('Like'), li:has(span.icon:has(i.banicon.banicon-facebook))"));
+        tasks = tasks.add(J("li:contains('YT'):contains('Check'), li:has(span.icon:has(i.banicon.banicon-youtube))"));
+        //steam group, twitter, and point collection tasks might be different
         //tasks = tasks.add(J("li:contains('Share'):contains('Twitter')"));
+        //sharing on non.proprietary social media platforms
+        tasks = tasks.add(J("li:contains('Share'):not(li:contains('Twitter')"));
+        tasks = J.unique(tasks); //filters out any duplicates
+        console.log(tasks.length + " skippable tasks found.");
 
       	//dig deeper, but keep the task steps together
         tasks = tasks.find("div[class='buttons']");
@@ -169,18 +175,28 @@
         J.ajaxSetup({async:false}); //not so smooth looking but easy
         if (tasks.length) {console.log(tasks);
             tasks.each(function(counter, task){
-                J.get( //hit the first link...
-                    getEncapsedString(J(J(task).find("button:not([disabled])")).attr("onclick"), "'"),
-                    function() {//...and only continue with the second link on success...
-                        //which will, on success, make sure we really solved the task
-                        J.get(
-                            getEncapsedString(J(J(task).find("button[disabled]")).attr("onclick"), "'"),
+                var youtubebutton = J("button[data-ytid]");
+                if (youtubebutton.length) {//just hit the second link, since there is just one.
+                    J.get(
+                        getEncapsedString(J(J(task).find("button[disabled]")).attr("onclick"), "'"),
                             function(){
                                 successes++;
                             }
                         );
-                    }
-                );
+                } else {
+                    J.get( //hit the first link...
+                        getEncapsedString(J(J(task).find("button:not([disabled])")).attr("onclick"), "'"),
+                        function() {//...and only continue with the second link on success...
+                            //which will, on success, make sure we really solved the task
+                            J.get(
+                                getEncapsedString(J(J(task).find("button[disabled]")).attr("onclick"), "'"),
+                                function(){
+                                    successes++;
+                                }
+                            );
+                        }
+                    );
+                }
             });
             J.ajaxSetup({async:true});
             if (tasks.length == successes) {
@@ -194,7 +210,6 @@
     };
 
     //configuration
-
     var config = [
         {
             hostname: "marvelousga.com",
