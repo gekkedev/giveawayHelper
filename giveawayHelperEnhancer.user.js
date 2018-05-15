@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Giveaway Killer (a.k.a. Giveaway Enhancer)
 // @namespace    https://github.com/gekkedev/giveawayHelperEnhancer
-// @version      0.6.2
+// @version      0.6.3
 // @description  Enhances Steam key giveaways sites by lots of useful features
 // @author       gekkedev
 // @match        *://*.marvelousga.com/*
@@ -20,8 +20,8 @@
 // @match        *://*.steamcommunity.com/openid/login*
 // @match        *://*.steamcommunity.com/oauth/login*
 // @grant        none
-// @updateURL    https://raw.githubusercontent.com/gekkedev/giveawayHelperEnhancer/master/giveawayHelperEnhancer.user.js
-// @downloadURL  https://raw.githubusercontent.com/gekkedev/giveawayHelperEnhancer/master/giveawayHelperEnhancer.user.js
+// @updateURL    https://raw.githubusercontent.com/gekkedev/GiveawayKiller/master/giveawayKiller.user.js
+// @downloadURL  https://raw.githubusercontent.com/gekkedev/GiveawayKiller/master/giveawayKiller.user.js
 // @require      https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js
 // @require      https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.10.0/js/md5.min.js
 // @run-at document-end
