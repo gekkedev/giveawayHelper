@@ -1,4 +1,5 @@
-# Giveaway Killer (a.k.a. Giveaway Enhancer)
+# Giveaway Enhancer
+# **DISCONTINUED** - The successor is [here](https://github.com/gekkedev/GiveawayKiller)
 This script enhances the popular [Steam key giveaway site helper](https://github.com/Citrinate/giveawayHelper) by automatically logging in or solving tasks. It also removes banners/popups if a giveaway site excessively uses them. Therefore it does not interfere with the Giveaway Helper. Using both of them is higly recommended.
 
 **Disclaimer: Any usage of this script may violate the Terms of Service of the sites it runs on. It is absolutely meant to do that. Use at your own risk.**
